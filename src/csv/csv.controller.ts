@@ -3,8 +3,10 @@ import { Controller, Get, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { CsvService } from './csv.service';
 import { getCsvFileName } from 'lib/common/utils/get-csv-file-name.util';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('csv')
+@ApiTags('csv')
 export class CsvController {
   constructor(private readonly csvService: CsvService) {}
 

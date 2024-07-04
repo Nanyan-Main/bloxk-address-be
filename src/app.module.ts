@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { AddressModule } from './address/address.module';
 import { MongooseDbModule } from './mongoose-db/mongoose-db.module';
 import { MongooseModelModule } from './mongoose-model/mongoose-model.module';
@@ -8,6 +8,9 @@ import { AllExceptionsFilter } from 'lib/common/filters/all-exceptions-filter';
 import { CsvModule } from './csv/csv.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { ONE_MINUTE, RateLimits } from './constant';
+import { ApiKeyMiddleware } from './api-key/api-key.middleware';
+import { ApiKeyService } from './api-key/api-key.service';
+import { ApiKeyModule } from './api-key/api-key.module';
 
 @Module({
   imports: [
@@ -31,6 +34,7 @@ import { ONE_MINUTE, RateLimits } from './constant';
       },
     }),
     CsvModule,
+    ApiKeyModule,
   ],
   providers: [
     { provide: APP_FILTER, useClass: AllExceptionsFilter },
@@ -38,6 +42,13 @@ import { ONE_MINUTE, RateLimits } from './constant';
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
     },
+    ApiKeyService,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(ApiKeyMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}

@@ -4,12 +4,13 @@ import { CreateAddressDto } from './dto/create-address.dto';
 import { AddressDto } from './dto/address.dto';
 import { plainToInstance } from 'class-transformer';
 import { SuccessTransformInterceptor } from 'lib/common/interceptor/success-transform.interceptor';
-import { ApiOkResponse } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ApiFailedResponse } from 'lib/common/decorator/api-failed-response.decorator';
 import { addressDoc } from 'lib/swagger/address.doc';
 import { CreateAddressInterceptor } from 'lib/common/interceptor/add-extra-fields.interceptor';
 
 @Controller('address')
+@ApiTags('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 

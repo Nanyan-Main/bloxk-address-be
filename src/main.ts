@@ -19,11 +19,23 @@ async function bootstrap() {
     .setTitle(confDoc.title)
     .setDescription(confDoc.description)
     .setVersion(confDoc.version)
-    .addBearerAuth(confDoc.bearerAuth, confDoc.securityName)
+
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
+  document.components = {
+    ...document.components,
+    securitySchemes: {
+      'x-api-key': {
+        type: 'apiKey',
+        in: 'header',
+        name: 'x-api-key',
+      },
+    },
+  };
+  document.security = [{ 'x-api-key': [] }];
   SwaggerModule.setup(confDoc.endpoint, app, document);
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   await app.listen(process.env.PORT || 3001);
