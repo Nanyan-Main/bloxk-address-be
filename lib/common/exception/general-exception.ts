@@ -18,6 +18,10 @@ export const GENERAL_VALIDATOR_RESPONSE = {
     status: 'EMPTY_ADDRESS',
     message: 'Address is required',
   },
+  EXIST_ADDRESS: {
+    status: 'EXIST_ADDRESS',
+    message: 'Address is already existed',
+  },
 };
 const GENERAL_RESPONSE = {
   FAILED_CREATE_ADDRESS: {

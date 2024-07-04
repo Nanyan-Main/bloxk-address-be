@@ -31,6 +31,11 @@ export class AddressService {
     return `This action returns a #${id} address`;
   }
 
+  async findByName(name: string) {
+    console.log('name', name);
+    return await this.addressModel.findOne({ name });
+  }
+
   update(id: number, updateAddressDto: UpdateAddressDto) {
     return `This action updates a #${id} address`;
   }
