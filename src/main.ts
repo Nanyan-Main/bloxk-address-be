@@ -7,12 +7,8 @@ import { confDoc } from 'lib/swagger/conf.doc';
 import { useContainer } from 'class-validator';
 
 async function bootstrap() {
-  const isProduction = process.env.NODE_ENV === 'production';
-
   const app = await NestFactory.create(AppModule, {
-    cors: {
-      origin: isProduction ? '' : '*',
-    },
+    cors: true,
   });
   app.useGlobalPipes(new CustomValidationPipe(ValidationPipeConfigs));
 
