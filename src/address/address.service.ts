@@ -32,7 +32,6 @@ export class AddressService {
   }
 
   async findByName(name: string) {
-    console.log('name', name);
     return await this.addressModel.findOne({ name });
   }
 

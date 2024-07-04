@@ -17,10 +17,8 @@ export class AddressExists implements ValidatorConstraintInterface {
 
   async validate(constraint: string, args?: Partial<ValidationArguments>) {
     if (args?.constraints[0]) {
-      console.log('constraint', constraint);
       return !!(await this.addressService.findByName(constraint));
     }
-    console.log('constraint', this.addressService);
 
     return !(await this.addressService.findByName(constraint));
   }
