@@ -10,14 +10,17 @@ import {
 import { AddressService } from './address.service';
 import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
+import { AddressDto } from './dto/address.dto';
+import { plainToInstance } from 'class-transformer';
 
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 
   @Post()
-  create(@Body() createAddressDto: CreateAddressDto) {
-    return this.addressService.create(createAddressDto);
+  async create(@Body() createAddressDto: CreateAddressDto) {
+    const address = await this.addressService.create(createAddressDto);
+    return plainToInstance(AddressDto, address);
   }
 
   @Get()
