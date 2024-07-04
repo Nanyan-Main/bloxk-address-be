@@ -10,6 +10,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: true,
   });
+  app.enableCors({
+    origin: '*', // Or specify domains, e.g., ['http://example.com', 'https://anotherdomain.com']
+  });
   app.useGlobalPipes(new CustomValidationPipe(ValidationPipeConfigs));
 
   const config = new DocumentBuilder()
