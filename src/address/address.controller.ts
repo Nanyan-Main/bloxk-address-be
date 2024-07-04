@@ -28,9 +28,7 @@ export class AddressController {
   @ApiOkResponse(addressDoc.findAllOkResponse)
   async findAll() {
     const addresses = await this.addressService.findAll();
-    return addresses.map((address) =>
-      plainToInstance(AddressDto, address.toObject()),
-    );
+    return addresses.map((address) => plainToInstance(AddressDto, address));
   }
 
   /*   @Get(':id')

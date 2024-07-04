@@ -23,9 +23,9 @@ export class AddressService {
     return address.toObject();
   }
 
-  findAll() {
-    const addresses = this.addressModel.find();
-    return addresses;
+  async findAll() {
+    const addresses = await this.addressModel.find();
+    return addresses.map((address) => address.toObject());
   }
 
   findOne(id: number) {
@@ -36,11 +36,11 @@ export class AddressService {
     return await this.addressModel.findOne({ name });
   }
 
-  update(id: number, updateAddressDto: UpdateAddressDto) {
+  /*   update(id: number, updateAddressDto: UpdateAddressDto) {
     return `This action updates a #${id} address`;
   }
 
   remove(id: number) {
     return `This action removes a #${id} address`;
-  }
+  } */
 }

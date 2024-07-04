@@ -5,6 +5,7 @@ import { MongooseModelModule } from './mongoose-model/mongoose-model.module';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from 'lib/common/filters/all-exceptions-filter';
+import { CsvModule } from './csv/csv.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AllExceptionsFilter } from 'lib/common/filters/all-exceptions-filter';
     }),
     MongooseDbModule,
     MongooseModelModule,
+    CsvModule,
   ],
   providers: [{ provide: APP_FILTER, useClass: AllExceptionsFilter }],
 })

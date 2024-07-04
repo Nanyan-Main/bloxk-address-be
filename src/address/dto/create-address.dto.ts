@@ -13,16 +13,16 @@ import { IsAddressExists } from './is-address-exists.rule';
 export class CreateAddressDto {
   @ApiProperty({ example: 'address', description: 'Please add address' })
   @IsAddressExists({
-    message: GENERAL_VALIDATOR_RESPONSE.EXIST_ADDRESS.status,
+    message: GENERAL_VALIDATOR_RESPONSE.EXIST_ADDRESS.message,
   })
   @MaxLength(MAX_LENGTH_ADDRESS, {
-    message: GENERAL_VALIDATOR_RESPONSE.MAX_LENGTH_ADDRESS.status,
+    message: GENERAL_VALIDATOR_RESPONSE.MAX_LENGTH_ADDRESS.message,
   })
   @MinLength(MIN_LENGTH_ADDRESS, {
-    message: GENERAL_VALIDATOR_RESPONSE.MIN_LENGTH_ADDRESS.status,
+    message: GENERAL_VALIDATOR_RESPONSE.MIN_LENGTH_ADDRESS.message,
   })
   @IsString()
-  @IsNotEmpty({ message: GENERAL_VALIDATOR_RESPONSE.EMPTY_ADDRESS.status })
+  @IsNotEmpty({ message: GENERAL_VALIDATOR_RESPONSE.EMPTY_ADDRESS.message })
   name: string;
 
   @IsOptional()
