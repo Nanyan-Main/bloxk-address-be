@@ -17,6 +17,7 @@ import { SuccessTransformInterceptor } from 'lib/common/interceptor/success-tran
 import { ApiOkResponse } from '@nestjs/swagger';
 import { ApiFailedResponse } from 'lib/common/decorator/api-failed-response.decorator';
 import { addressDoc } from 'lib/swagger/address.doc';
+import { CreateAddressInterceptor } from 'lib/common/interceptor/add-extra-fields.interceptor';
 
 @Controller('address')
 export class AddressController {
@@ -24,6 +25,7 @@ export class AddressController {
 
   @Post()
   @UseInterceptors(new SuccessTransformInterceptor())
+  @UseInterceptors(CreateAddressInterceptor)
   @ApiOkResponse(addressDoc.createOkResponse)
   @ApiFailedResponse(...addressDoc.createFailResponse)
   async create(@Body() createAddressDto: CreateAddressDto) {

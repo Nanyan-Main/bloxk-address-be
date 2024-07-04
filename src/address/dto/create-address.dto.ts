@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { GENERAL_VALIDATOR_RESPONSE } from 'lib/common/exception/general-exception';
 import { MAX_LENGTH_ADDRESS, MIN_LENGTH_ADDRESS } from 'src/constant';
 import { IsAddressExists } from './is-address-exists.rule';
@@ -18,4 +24,7 @@ export class CreateAddressDto {
   @IsString()
   @IsNotEmpty({ message: GENERAL_VALIDATOR_RESPONSE.EMPTY_ADDRESS.status })
   name: string;
+
+  @IsOptional()
+  userIp?: string;
 }

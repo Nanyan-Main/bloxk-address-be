@@ -6,6 +6,9 @@ import { ADDRESS_COLLECTION_NAME } from 'src/constant';
 export class Address {
   @Prop({ required: true })
   name: string;
+
+  @Prop({ required: true })
+  userIp: string;
 }
 
 export type AddressDocument = Address & Document;
