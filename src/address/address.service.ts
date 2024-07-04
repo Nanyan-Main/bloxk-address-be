@@ -7,6 +7,7 @@ import {
   ADDRESS_MODEL,
   AddressModel,
 } from 'src/schema/address.schema';
+import { FailCreateAddressException } from 'lib/common/exception/general-exception';
 
 @Injectable()
 export class AddressService {
@@ -15,6 +16,9 @@ export class AddressService {
   ) {}
   async create(createAddressDto: CreateAddressDto): Promise<Address> {
     const address = await this.addressModel.create(createAddressDto);
+    if (!address) {
+      throw new FailCreateAddressException();
+    }
 
     return address.toObject();
   }

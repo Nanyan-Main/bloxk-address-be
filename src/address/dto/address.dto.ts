@@ -3,7 +3,7 @@ import { BaseDto } from 'lib/common/dto/base-dto';
 import { Address } from 'src/schema/address.schema';
 export class AddressDto extends BaseDto {
   @Expose()
-  data: string;
+  name: string;
 
   @Expose()
   createdAt: Date;

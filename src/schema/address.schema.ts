@@ -5,7 +5,7 @@ import { ADDRESS_COLLECTION_NAME } from 'src/constant';
 @Schema({ timestamps: true, collection: ADDRESS_COLLECTION_NAME })
 export class Address {
   @Prop({ required: true })
-  data: string;
+  name: string;
 }
 
 export type AddressDocument = Address & Document;
