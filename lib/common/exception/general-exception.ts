@@ -14,6 +14,10 @@ export const GENERAL_VALIDATOR_RESPONSE = {
     status: 'MAX_LENGTH_TRADER_USERNAME',
     message: `Not allow user to input more ${MAX_LENGTH_ADDRESS} characters.`,
   },
+  EMPTY_ADDRESS: {
+    status: 'EMPTY_ADDRESS',
+    message: 'Address is required',
+  },
 };
 const GENERAL_RESPONSE = {
   FAILED_CREATE_ADDRESS: {
