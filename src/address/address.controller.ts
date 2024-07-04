@@ -14,6 +14,9 @@ import { UpdateAddressDto } from './dto/update-address.dto';
 import { AddressDto } from './dto/address.dto';
 import { plainToInstance } from 'class-transformer';
 import { SuccessTransformInterceptor } from 'lib/common/interceptor/success-transform.interceptor';
+import { ApiOkResponse } from '@nestjs/swagger';
+import { ApiFailedResponse } from 'lib/common/decorator/api-failed-response.decorator';
+import { addressDoc } from 'lib/swagger/address.doc';
 
 @Controller('address')
 export class AddressController {
@@ -21,6 +24,8 @@ export class AddressController {
 
   @Post()
   @UseInterceptors(new SuccessTransformInterceptor())
+  @ApiOkResponse(addressDoc.createOkResponse)
+  @ApiFailedResponse(...addressDoc.createFailResponse)
   async create(@Body() createAddressDto: CreateAddressDto) {
     const address = await this.addressService.create(createAddressDto);
     return plainToInstance(AddressDto, address);
