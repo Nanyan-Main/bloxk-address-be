@@ -24,7 +24,8 @@ export class AddressService {
   }
 
   findAll() {
-    return `This action returns all address`;
+    const addresses = this.addressModel.find();
+    return addresses;
   }
 
   findOne(id: number) {

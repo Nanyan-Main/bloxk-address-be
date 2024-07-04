@@ -1,3 +1,4 @@
+import { HttpStatus } from '@nestjs/common';
 import { ApiResponseOptions } from '@nestjs/swagger';
 import {
   ReferenceObject,
@@ -12,4 +13,9 @@ export const getApiResponseOptions = <T>(
   schema: <SchemaObject & Partial<ReferenceObject>>{
     example: schema,
   },
+});
+
+export const SuccessListResponse = <T>(data: T[]) => ({
+  status: HttpStatus[HttpStatus.OK],
+  data: <T[]>data,
 });

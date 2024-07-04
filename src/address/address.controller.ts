@@ -34,8 +34,13 @@ export class AddressController {
   }
 
   @Get()
-  findAll() {
-    return this.addressService.findAll();
+  @UseInterceptors(new SuccessTransformInterceptor())
+  @ApiOkResponse(addressDoc.findAllOkResponse)
+  async findAll() {
+    const addresses = await this.addressService.findAll();
+    return addresses.map((address) =>
+      plainToInstance(AddressDto, address.toObject()),
+    );
   }
 
   @Get(':id')
