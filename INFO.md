@@ -102,3 +102,50 @@
 
 
 
+
+## MongoDB Database Documentation
+
+### Collections
+
+---
+
+#### Collection: `addresses`
+
+- **Document Structure:**
+  - `name` (String)
+    - Description: The blockchain address submitted by the user.
+    - Example: `"0x57B7f4Da4Ff03e6287F761EEEf27e0A3dC82e021"`
+  - `userIp` (String)
+    - Description: The IP address of the user who submitted the blockchain address.
+    - Example: `"223.206.215.37"`
+  - `createdAt` (Date)
+    - Description: The timestamp when the blockchain address was submitted.
+    - Example: `"2024-07-04T13:55:51.545Z"`
+
+- **Example Document:**
+  ```json
+  {
+    "name": "0x57B7f4Da4Ff03e6287F761EEEf27e0A3dC82e021",
+    "userIp": "223.206.215.37",
+    "createdAt": "2024-07-04T13:55:51.545Z"
+  }
+  ```
+
+---
+
+#### Collection: `apiKey`
+
+- **Document Structure:**
+  - `data` (String)
+    - Description: The API key used for authentication.
+    - Example: `"12345-abcde-67890-fghij"`
+
+- **Example Document:**
+  ```json
+  {
+    "data": "12345-abcde-67890-fghij"
+  }
+  ```
+
+---
+
